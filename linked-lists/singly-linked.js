@@ -16,7 +16,7 @@ class LinkedList {
     return this;
   }
 
-  _addValueAtIndex(i, value) {
+  _addSingleAtIndex(i, value) {
     if (this.length === 0  && i !== 0) {
       alert(`You have entered an index "${i}", but this list is empty, therefore, the value you entered will be added to the top of the list.`)
       return this._addSingleItemToHead(value);
@@ -43,13 +43,13 @@ class LinkedList {
     return this;
   }
 
-  addValuesAtIndex(i, ...values) {
+  addValueAtIndex(i, ...values) {
     if (this.length === 0 && i !== 0) {
       alert(`You have entered an index "${i}", but this list is empty, therefore, the values you entered will be added to the top of the list.`)
       return values.forEach(value => this._addSingleItemToHead(value));
     }
 
-    values.forEach((value) => this._addValueAtIndex(i, value));
+    values.forEach((value) => this._addSingleAtIndex(i, value));
 
     return this;
   }
@@ -63,7 +63,6 @@ class LinkedList {
       }
       result = result.next;
     }
-    return result;
   }
   getFromIndex(i) {
     let result = this.head;
@@ -90,9 +89,13 @@ class LinkedList {
     return value;
   }
 
-  remove(val) {
-    if(this.length === 0) {
+  _remove(val) {
+    if (this.length === 0) {
         return undefined;
+    }
+
+    if (!val) {
+      return undefined;
     }
 
     if (this.head.value === val) {
@@ -100,24 +103,79 @@ class LinkedList {
         return this;
     }
 
-    let previousNode = this.head;
-    let thisNode = previousNode.next;
+    let previous = this.head;
 
-    while(thisNode) {
-        if(thisNode.value === val) {
+    while (previous) {
+        if (previous.next.value === val) {
           break;
         }
 
-        previousNode = thisNode;
-        thisNode = thisNode.next;
+        previous = previous.next;
     }
 
-    if (thisNode === null) {
+    if (previous.next === null) {
       return undefined;
     }
 
-    previousNode.next = thisNode.next;
+    previous.next = previous.next.next;
     this.length--;
+    return this;
+  }
+
+  remove(...values) {
+    if (this.length === 0) {
+        return undefined;
+    }
+
+    return values.forEach((val) => this._remove(val))
+  }
+
+  _removeFromIndex(i) {
+    if (this.length === 0) {
+        return undefined;
+    }
+
+    if (i === 0) {
+      this.removeFromHead();
+      return this;
+    }
+
+    let previous = this.head;
+    let counter = 0;
+
+    while(previous) {
+      if (counter === i-1) {
+        break;
+      }
+      previous = previous.next;
+      counter++;
+    }
+
+    previous.next = previous.next.next;
+    this.length--;
+    return this;
+  }
+  removeFromIndex(i, n) {
+    if (this.length === 0) {
+        return undefined;
+    }
+
+    if (n === undefined) {
+      return this._removeFromIndex(i);
+    }
+
+    if (n > this.length - i) {
+      return alert(`You want to delete "${n}" element(s), but there is (are) only ${this.length-i} element(s), after element №${i} element(s)!\n
+      Please, enter a valid value. `)
+    }
+
+    let counter = i;
+
+    while(n >= counter) {
+      this._removeFromIndex(i);
+      counter++;
+    }
+
     return this;
   }
 }
@@ -125,5 +183,4 @@ class LinkedList {
 const list = new LinkedList("1").addToHead('2', '3', '4', '5', '6');
 
 
-list.addValuesAtIndex(0, "Джигурда", "Пизда", "Хуй");
-console.log(list);
+console.log(list.removeFromIndex(1, 6));
