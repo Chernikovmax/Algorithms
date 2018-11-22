@@ -10,20 +10,50 @@ class LinkedList {
     this.head = newNode;
     this.length++;
   }
+
   addToHead(...values) {
     values.forEach(value => this._addSingleItemToHead(value));
     return this;
   }
-  removeFromHead() {
-    if (this.length === 0) {
-      return undefined;
-    }
-    const value = this.head.value;
-    this.head = this.head.next;
-    this.length--;
 
-    return value;
+  _addValueAtIndex(i, value) {
+    if (this.length === 0  && i !== 0) {
+      alert(`You have entered an index "${i}", but this list is empty, therefore, the value you entered will be added to the top of the list.`)
+      return this._addSingleItemToHead(value);
+    }
+
+    if (i === 0) {
+      return this._addSingleItemToHead(value);
+    }
+
+    let newNode = {value};
+    let previous = this.head;
+    let counter = 0;
+
+    while(previous) {
+      if(counter === i-1 ) {
+        break;
+      }
+      previous = previous.next;
+      counter++;
+    }
+    newNode.next = previous.next;
+    previous.next = newNode;
+    this.length++;
+    return this;
   }
+
+  addValuesAtIndex(i, ...values) {
+    if (this.length === 0 && i !== 0) {
+      alert(`You have entered an index "${i}", but this list is empty, therefore, the values you entered will be added to the top of the list.`)
+      return values.forEach(value => this._addSingleItemToHead(value));
+    }
+
+    values.forEach((value) => this._addValueAtIndex(i, value));
+
+    return this;
+  }
+
   find(val) {
     let result = this.head;
 
@@ -35,12 +65,12 @@ class LinkedList {
     }
     return result;
   }
-  findElementByN(n) {
+  getFromIndex(i) {
     let result = this.head;
     let counter = 0;
 
     while(result) {
-      if(counter === n-1 ) {
+      if(counter === i ) {
         return result;
       }
       result = result.next;
@@ -48,6 +78,18 @@ class LinkedList {
     }
     return result;
   }
+
+  removeFromHead() {
+    if (this.length === 0) {
+      return undefined;
+    }
+    const value = this.head.value;
+    this.head = this.head.next;
+    this.length--;
+
+    return value;
+  }
+
   remove(val) {
     if(this.length === 0) {
         return undefined;
@@ -80,8 +122,8 @@ class LinkedList {
   }
 }
 
-const list = new LinkedList("1").addToHead('2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12');
+const list = new LinkedList("1").addToHead('2', '3', '4', '5', '6');
 
-list.remove("10");
 
+list.addValuesAtIndex(0, "Джигурда", "Пизда", "Хуй");
 console.log(list);
