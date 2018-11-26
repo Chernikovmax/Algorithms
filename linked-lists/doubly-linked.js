@@ -126,10 +126,10 @@ class DoublyLinkedList {
 
   removeAt(position) {
     if (position === 0) {
-      return removeFromHead();
+      return this.removeFromHead();
     }
     if (position === this.length - 1) {
-      return removeFromTail();
+      return this.removeFromTail();
     }
 
     let current = this.head;
@@ -150,7 +150,7 @@ class DoublyLinkedList {
     }
 
     if (position >= (this.length-1 / 2)) {
-      current = this.tale;
+      current = this.tale.prev;
       while (current) {
         current = current.prev;
         if (counter === position) {
@@ -163,16 +163,129 @@ class DoublyLinkedList {
       }
     }
   }
-  // removeAt(position, ...values) {
-  //   let i = position;
-  //   return values.forEach((value) => {
-  //     this.removeAt(i, value);
-  //     i++;
-  //   });
-  // }
+  removeSeveralAt(position, quantity) {
+    let pieces = 1;
+
+    if (position === this.length - 1) {
+      while(pieces <= quantity) {
+        this.removeFromTail();
+        pieces++;
+      }
+      return this;
+    }
+
+    if (quantity > (this.length - (position + 1))) {
+      return console.error(`There is(are) "${this.length - (position + 1)}" element(s) after selected position.`);
+    }
+
+    while (pieces <= quantity) {
+      this.removeAt(position);
+      pieces++;
+    }
+    return this;
+  }
+  reverse() {
+    let current = this.head;
+    let prev = null;
+
+    while (current) {
+      let next = current.next
+      current.next = prev;
+      current.prev = next;
+      prev = current;
+      current = next;
+    }
+    this.tail = this.head;
+    this.head = prev;
+    return this;
+  }
+  swap(nodeOne, nodeTwo) {
+    if (nodeOne < nodeTwo || (nodeOne < 0 || nodeOne > this.length - 2) || (nodeTwo > this.length-1)) {
+      return console.error(`Wrong number! The length of this Linked list is "${this.length}" and the first value must be less than the second. please enter a valid values.`);
+    }
+
+    let current = this.head;
+    let counter = 0;
+
+    while (counter < nodeOne) {
+      current = current.next;
+      counter++;
+    }
+
+    let firstSought = current;
+
+    while (counter < nodeTwo) {
+      current = current.next;
+      counter++;
+    }
+
+    let secondSought = current;
+
+    current = firstSought.value;
+
+    firstSought.value = secondSought.value;
+    secondSought.value = current;
+
+    return this;
+  }
+  isEmpty() {
+    if (this.length > 0) {
+      return console.log(`It's not empty! The length is "${this.length}".`);
+    }
+    if (this.length === 0) {
+      return console.log("It's empty!");
+    }
+  }
+  traverse(fn) {
+    let current = this.head;
+
+    while (current !== null) {
+      fn(current);
+      current = current.next;
+    }
+    return this;
+  }
+  traverseReverse(fn) {
+    let current = this.tail;
+
+    while (current !== null) {
+      fn(current);
+      current = current.prev;
+    }
+    return this;
+  }
+  findPosition(value) {
+    let current = this.head;
+    let counter = 0;
+
+    while (current) {
+      if (current.value === value) {
+       return console.log(counter);
+      }
+      current = current.next
+      counter++
+    }
+    return console.log("There is no such value!");;
+  }
+  findPosition(position) {
+    let current = this.head;
+    let counter = 0;
+
+    if (position > this.length-1 || position < 0) {
+      return console.error(`The length of this Linked list is "${this.length}", you should enter a valid position.`);
+    }
+
+    while (current) {
+      if (counter === position) {
+       return console.log(current.value);
+      }
+      current = current.next
+      counter++
+    }
+    return console.error("There is no a node at this position!");;
+  }
 }
 
-const list = new DoublyLinkedList('1', '2', '3', '4');
+let list = new DoublyLinkedList('1', '2', '3', '4', '5', '6', '7');
 
-
-console.log(list.removeAt(1, ));
+console.log(list.findPosition());
