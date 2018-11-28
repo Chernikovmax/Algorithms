@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Student registration</title>
+  <link rel="stylesheet" href="students.css">
+</head>
+<body>
+
+<div class="main-wrapper">
+  <section class="subwrapper">
+    <section class="title-wrapper">
+      <span class="title">Last Name</span>
+      <span class="title">First Name</span>
+      <span class="title">Patronymic</span>
+      <span class="title">Birthday</span>
+      <span class="title">Cource of study</span>
+      <span class="title">Group number</span>
+    </section>
+    <section class="title-wrapper">
+      <input required autofocus class="input-info" type="text" placeholder="Ivanov" maxlength="30">
+      <input required class="input-info"type="text" placeholder="Ivan" maxlength="15">
+      <input required class="input-info" type="text" placeholder="Ivanovich" maxlength="15">
+      <input required class="input-info" type="date" maxlength="8"  min="1940-01-01" max="2005-31-12">
+      <input required class="input-info" type="text" placeholder="1" maxlength="1" min="1" max="6">
+      <input required class="input-info" type="text" placeholder="ISA-123" maxlength="10">
+    </section>
+  </section>
+  <section class="subwrapper">
+    <section class="title-wrapper">
+      <span class="title">English</span>
+      <span class="title">Geometry and algebra</span>
+      <span class="title">Mathematical analysis</span>
+      <span class="title">Physics</span>
+      <span class="title">Computer science</span>
+    </section>
+    <section class="title-wrapper">
+      <input required class="point" type="number" placeholder="Points" min="2" max="5" maxlength="1">
+      <input required class="point" type="number" placeholder="Points" min="2" max="5" maxlength="1">
+      <input required class="point" type="number" placeholder="Points" min="2" max="5" maxlength="1">
+      <input required class="point" type="number" placeholder="Points" min="2" max="5" maxlength="1">
+      <input required class="point" type="number" placeholder="Points" min="2" max="5" maxlength="1">
+    </section>
+  </section>
+  <input id="submit-btn" type="submit" value="Register student">
+</div>
+
+
+<script type="text/javascript" src="../scripts/students(exercise).js"></script>
+</body>
+</html>

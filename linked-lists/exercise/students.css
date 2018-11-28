@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: rgb(246, 237, 198);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-wrapper {
+  min-width: 350px;
+  width: 50vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background-color: rgb(233, 195, 110);
+  border-radius: 20px;
+}
+
+.input-info {
+  height: 30px;
+  width: 200px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  padding-left: 15px;
+}
+
+.point {
+  width: 50px;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  padding-left: 15px;
+}
+
+.subwrapper {
+  margin-top: 1rem;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(255, 247, 212);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.title {
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 7px 5px 0 5px;
+  color: rgb(84, 59, 11);
+}
+
+.title-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#submit-btn {
+  margin-top: 20px;
+  width: 150px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(96, 63, 0);
+  color: rgb(231, 228, 222);
+  font-size: 1rem;
+  cursor: pointer;
+}
+#submit-btn:hover {
+  background-color: rgb(125, 83, 3);
+  color: #fff;
+}
