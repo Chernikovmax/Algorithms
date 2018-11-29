@@ -32,7 +32,7 @@ body {
 }
 
 .point {
-  width: 50px;
+  width: 33px;
   height: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -40,7 +40,7 @@ body {
   border-radius: 5px;
   background-color: rgb(255, 255, 255);
   padding-left: 10px;
-  font-size: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .subwrapper {

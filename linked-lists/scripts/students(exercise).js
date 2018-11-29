@@ -1,24 +1,26 @@
-let lastNameInfo = document.querySelector('.input-info').value;
-let firstNameInfo = document.querySelectorAll('.input-info')[1].value;
-let patronymicInfo = document.querySelectorAll('.input-info')[2].value;
-let birthdayInfo = document.querySelectorAll('.input-info')[3].value;
-let courseOfStudyInfo = document.querySelectorAll('.input-info')[4].value;
-let groupNumInfo = document.querySelectorAll('.input-info')[5].value;
+const lastNameInfo = document.querySelector('[name=last-name]');
+const firstNameInfo = document.querySelector('[name=first-name]');
+const patronymicInfo = document.querySelector('[name=patronymic]');
+const birthdayInfo = document.querySelector('[name=birthday]');
+const courseOfStudyInfo = document.querySelector('[name=course-of-study]');
+const groupNumInfo = document.querySelector('[name=group-number]');
 
-let englishPoint = document.querySelector('.point').value;
-let geometryAlgebraPoint = document.querySelectorAll('.point')[1].value;
-let mathAnPoint = document.querySelectorAll('.point')[2].value;
-let physicsPoint = document.querySelectorAll('.point')[3].value;
-let computerSciencePoint = document.querySelectorAll('.point')[4].value;
+const englishPoint = document.querySelector('[name=english]');
+const geometryAlgebraPoint = document.querySelector('[name=geometry-algebra]');
+const mathAnPoint = document.querySelector('[name=math-analysis]');
+const physicsPoint = document.querySelector('[name=physics]');
+const computerSciencePoint = document.querySelector('[name=computer-science]');
 
-const registerBtn = document.querySelector('#submit-btn');
+const register = document.querySelector('.register-student');
+
+const students = [];
 
 class SubjectPoints {
   constructor(english, geometryAlgebra, mathAn, physics, computerScience) {
-    this['English'] = english;
+    this.English = english;
     this['Geometry and algebra'] = geometryAlgebra;
     this['Mathematical analysis'] = mathAn;
-    this['Physics'] = physics;
+    this.Physics = physics;
     this['Computer science'] = computerScience;
   }
 }
@@ -32,20 +34,22 @@ class Student {
     this.birthday = birthday;
     this.courceOfStudy = courceOfStudy;
     this.groupNum = groupNum;
-    this.subjectsPoints = new SubjectPoints(englishPoint, geometryAlgebraPoint, mathAnPoint, physicsPoint, computerSciencePoint);
+    this.subjectsPoints = new SubjectPoints(englishPoint.value,
+      geometryAlgebraPoint.value, mathAnPoint.value, physicsPoint.value, computerSciencePoint.value);
   }
 }
 
-(function registerStudent() {
 
-  registerBtn.addEventListener('click', () => {
-    const student = new Student(lastNameInfo, firstNameInfo, patronymicInfo,
-      birthdayInfo, courseOfStudyInfo, groupNumInfo);
 
-    return student;
-  });
-  return student;
-} ());
+register.addEventListener('submit', (currentForm) => {
+  currentForm.preventDefault();
+
+  const student = new Student(lastNameInfo.value, firstNameInfo.value, patronymicInfo.value,
+    birthdayInfo.value, courseOfStudyInfo.value, groupNumInfo.value);
+    students.push(student);
+    console.table(students[0].subjectsPoints);
+});
+
 
 
 
