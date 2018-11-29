@@ -1,3 +1,5 @@
+const registerForm = document.querySelector('.register-student');
+
 const lastNameInfo = document.querySelector('[name=last-name]');
 const firstNameInfo = document.querySelector('[name=first-name]');
 const patronymicInfo = document.querySelector('[name=patronymic]');
@@ -13,7 +15,40 @@ const computerSciencePoint = document.querySelector('[name=computer-science]');
 
 const register = document.querySelector('.register-student');
 
-const students = [];
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+    this.prev = null;
+  }
+}
+
+class DoublyLinkedList {
+  constructor(...values) {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+    this.append(...values);
+  }
+  _appendItem(value) {
+    let newNode = new Node(value);
+    if(!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+      this.length++;
+    } else {
+      newNode.prev = this.tail;
+      this.tail.next = newNode;
+      this.tail = newNode;
+      this.length++;
+    }
+  }
+  append(...values) {
+    return values.forEach(value => this._appendItem(value));
+  }
+}
+
+const students = new DoublyLinkedList();
 
 class SubjectPoints {
   constructor(english, geometryAlgebra, mathAn, physics, computerScience) {
@@ -28,13 +63,13 @@ class SubjectPoints {
 class Student {
   constructor(lastName, firstName, patronymic, birthday,
     courceOfStudy, groupNum) {
-    this.lastName = lastName;
-    this.firstName = firstName;
-    this.patronymic = patronymic;
-    this.birthday = birthday;
-    this.courceOfStudy = courceOfStudy;
-    this.groupNum = groupNum;
-    this.subjectsPoints = new SubjectPoints(englishPoint.value,
+    this['Last Name'] = lastName;
+    this['First Name'] = firstName;
+    this['Patronymic'] = patronymic;
+    this.Birthday = birthday;
+    this['Cource of Study'] = courceOfStudy;
+    this['Group Number'] = groupNum;
+    this['Points by Subjects'] = new SubjectPoints(englishPoint.value,
       geometryAlgebraPoint.value, mathAnPoint.value, physicsPoint.value, computerSciencePoint.value);
   }
 }
@@ -44,8 +79,9 @@ register.addEventListener('submit', (currentForm) => {
 
   const student = new Student(lastNameInfo.value, firstNameInfo.value, patronymicInfo.value,
     birthdayInfo.value, courseOfStudyInfo.value, groupNumInfo.value);
-    students.push(student);
-    console.table(students[0].subjectsPoints);
+    students.append(student);
+    console.table(students.head.value);
+    registerForm.reset();
 });
 
 function toggleModalbox() {
@@ -53,7 +89,7 @@ function toggleModalbox() {
   modalDialog.classList.toggle('modalbox--active')
 }
 
-
+console.log(students);
 
 
 
