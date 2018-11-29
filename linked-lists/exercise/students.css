@@ -4,8 +4,9 @@ body {
   min-height: 100vh;
   background-color: rgb(246, 237, 198);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .main-wrapper {
@@ -111,4 +112,86 @@ body {
 #submit-btn:hover {
   background-color: rgb(125, 83, 3);
   color: #fff;
+}
+
+.modalbox-open-btn {
+  width: 130px;
+  height: 37px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(96, 63, 0);
+  color: rgb(231, 228, 222);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.modalbox-open-btn:hover {
+  background-color: rgb(125, 83, 3);
+  color: #fff;
+}
+
+.modalbox-container {
+  display: none;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+
+.modalbox--active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalbox__background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(3, 1, 0, 0.8);
+  z-index: 10;
+}
+
+.modalbox {
+  position: fixed;
+  height: 95%;
+  width: 70%;
+  border-radius: 5px;
+  background-color: rgb(230, 219, 193);
+  z-index: 20;
+}
+
+.modalbox__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.modalbox__title {
+  font-size: 2rem;
+  color: rgb(56, 41, 6);
+}
+
+.modalbox__close-btn {
+  position: absolute;
+  right: 0;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(96, 63, 0);
+}
+
+.cross {
+  color: rgb(231, 228, 222);
+  font-size: 1.5rem;
+  transform: rotate(45deg);
+}
+
+.modalbox__close-btn:hover {
+  background-color: rgb(125, 83, 3);
+}
+
+.modalbox__close-btn:hover .cross {
+  color: #fff;
+}
+
+.modalbox__content {
+  overflow: hidden;
 }

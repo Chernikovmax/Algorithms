@@ -39,8 +39,6 @@ class Student {
   }
 }
 
-
-
 register.addEventListener('submit', (currentForm) => {
   currentForm.preventDefault();
 
@@ -50,7 +48,10 @@ register.addEventListener('submit', (currentForm) => {
     console.table(students[0].subjectsPoints);
 });
 
-
+function toggleModalbox() {
+  const modalDialog = document.querySelector('.modalbox-container');
+  modalDialog.classList.toggle('modalbox--active')
+}
 
 
 
