@@ -1,87 +1,108 @@
-const registerForm = document.querySelector('.register-student');
-
-const lastNameInfo = document.querySelector('[name=last-name]');
-const firstNameInfo = document.querySelector('[name=first-name]');
-const patronymicInfo = document.querySelector('[name=patronymic]');
-const birthdayInfo = document.querySelector('[name=birthday]');
-const courseOfStudyInfo = document.querySelector('[name=course-of-study]');
-const groupNumInfo = document.querySelector('[name=group-number]');
-
-const englishPoint = document.querySelector('[name=english]');
-const geometryAlgebraPoint = document.querySelector('[name=geometry-algebra]');
-const mathAnPoint = document.querySelector('[name=math-analysis]');
-const physicsPoint = document.querySelector('[name=physics]');
-const computerSciencePoint = document.querySelector('[name=computer-science]');
-
 const register = document.querySelector('.register-student');
 
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
-    this.prev = null;
-  }
-}
+register.addEventListener('submit',
+  function(currentForm) {
+    currentForm.preventDefault();
 
-class DoublyLinkedList {
-  constructor(...values) {
-    this.head = null;
-    this.tail = null;
-    this.length = 0;
-    this.append(...values);
-  }
-  _appendItem(value) {
-    let newNode = new Node(value);
-    if(!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
-      this.length++;
-    } else {
-      newNode.prev = this.tail;
-      this.tail.next = newNode;
-      this.tail = newNode;
-      this.length++;
+    class SubjectPoints {
+      constructor(english, geometryAlgebra, mathAn, physics, computerScience) {
+        this.english = english;
+        this.geometryAndAlgebra = geometryAlgebra;
+        this.mathAn = mathAn;
+        this.physics = physics;
+        this.computerScience = computerScience;
+      }
     }
-  }
-  append(...values) {
-    return values.forEach(value => this._appendItem(value));
-  }
-}
 
-const students = new DoublyLinkedList();
+    class Student {
+      constructor(lastName, firstName, patronymic, birthday,
+        courceOfStudy, groupNum) {
+        this.fullName = `${lastName} ${firstName} ${patronymic}`;
+        this.birthday = birthday;
+        this.courceOfStudy = courceOfStudy;
+        this.groupNumber = groupNum;
+        this.pointsBySubjects = new SubjectPoints(englishPoint.value,
+          geometryAlgebraPoint.value, mathAnPoint.value, physicsPoint.value, computerSciencePoint.value);
+      }
+    }
 
-class SubjectPoints {
-  constructor(english, geometryAlgebra, mathAn, physics, computerScience) {
-    this.English = english;
-    this['Geometry and algebra'] = geometryAlgebra;
-    this['Mathematical analysis'] = mathAn;
-    this.Physics = physics;
-    this['Computer science'] = computerScience;
-  }
-}
+    class Node {
+      constructor(value) {
+        this.value = value;
+        this.next = null;
+        this.prev = null;
+      }
+    }
+    class DoublyLinkedList {
+      constructor(object) {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+        this.sortedAdd(object);
+      }
+      sortedAdd(object) {
+        let node = new Node(object);
 
-class Student {
-  constructor(lastName, firstName, patronymic, birthday,
-    courceOfStudy, groupNum) {
-    this['Last Name'] = lastName;
-    this['First Name'] = firstName;
-    this['Patronymic'] = patronymic;
-    this.Birthday = birthday;
-    this['Cource of Study'] = courceOfStudy;
-    this['Group Number'] = groupNum;
-    this['Points by Subjects'] = new SubjectPoints(englishPoint.value,
-      geometryAlgebraPoint.value, mathAnPoint.value, physicsPoint.value, computerSciencePoint.value);
-  }
-}
+        if (this.length === 0) {
+          this.head = node;
+          this.tail = node;
+          this.length++;
+          return this;
+        }
 
-register.addEventListener('submit', (currentForm) => {
-  currentForm.preventDefault();
+        let current = this.head;
 
-  const student = new Student(lastNameInfo.value, firstNameInfo.value, patronymicInfo.value,
-    birthdayInfo.value, courseOfStudyInfo.value, groupNumInfo.value);
+        while (current) {
+          if (current.value.fullName >= object.fullName) {
+            if (current.prev === null) {
+              node.next = current;
+              current.prev = node;
+              this.head = node;
+              this.length++;
+              return this;
+            }
+            current.prev.next = node;
+            node.prev = current.prev;
+            node.next = current;
+            current.prev = node;
+            this.length++;
+            return this;
+          }
+
+          if (current.next === null) {
+            node.prev = current;
+            current.next = node;
+            this.tail = node;
+            this.length++;
+            return this;
+          }
+
+          current = current.next;
+        }
+      }
+    }
+
+    const lastNameInfo = document.querySelector('[name=last-name]');
+    const firstNameInfo = document.querySelector('[name=first-name]');
+    const patronymicInfo = document.querySelector('[name=patronymic]');
+    const birthdayInfo = document.querySelector('[name=birthday]');
+    const courseOfStudyInfo = document.querySelector('[name=course-of-study]');
+    const groupNumInfo = document.querySelector('[name=group-number]');
+
+    const englishPoint = document.querySelector('[name=english]');
+    const geometryAlgebraPoint = document.querySelector('[name=geometry-algebra]');
+    const mathAnPoint = document.querySelector('[name=math-analysis]');
+    const physicsPoint = document.querySelector('[name=physics]');
+    const computerSciencePoint = document.querySelector('[name=computer-science]');
+
+    const student = new Student(lastNameInfo.value, firstNameInfo.value, patronymicInfo.value,
+      birthdayInfo.value, courseOfStudyInfo.value, groupNumInfo.value);
+
     students.append(student);
+    localStorage.setItem('list-of-students', JSON.stringify(students));
     console.table(students.head.value);
     registerForm.reset();
+
 });
 
 function toggleModalbox() {
@@ -89,7 +110,7 @@ function toggleModalbox() {
   modalDialog.classList.toggle('modalbox--active')
 }
 
-console.log(students);
+
 
 
 
