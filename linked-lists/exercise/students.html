@@ -10,42 +10,91 @@
 <div class="main-wrapper">
   <h1 class="main-title">Add a new student's info here</h1>
   <section class="subwrapper">
-    <section class="title-wrapper">
-      <span class="title">Last Name</span>
-      <span class="title">First Name</span>
-      <span class="title">Patronymic</span>
-      <span class="title">Birthday</span>
-      <span class="title">Cource of study</span>
-      <span class="title">Group number</span>
-      <hr class="line" noshade>
-      <section class="subjects-wrapper">
-        <span class="title english-subject">English</span>
-        <span class="title">Geometry and algebra</span>
-        <span class="title">Mathematical analysis</span>
-        <span class="title">Physics</span>
-        <span class="title">Computer science</span>
-      </section>
-    </section>
-    <form class="register-student">
+    <form class="register-student-form">
+      <section class="title-and-input">
+        <span class="title">Last Name</span>
         <input required autofocus class="input-info" type="text" name="last-name" placeholder="Ivanov" maxlength="30">
+      </section>
+      <section class="title-and-input">
+        <span class="title">First Name</span>
         <input required class="input-info" type="text" name="first-name" placeholder="Ivan" maxlength="15">
+      </section>
+      <section class="title-and-input">
+        <span class="title">Patronymic</span>
         <input required class="input-info" type="text" name="patronymic" placeholder="Ivanovich" maxlength="15">
+      </section>
+      <section class="title-and-input">
+        <span class="title">Birthday</span>
         <input required class="input-info" type="date" name="birthday" maxlength="8"  min="1940-01-01" max="2005-31-12">
-        <input required class="input-info" type="text" name="course-of-study" placeholder="1" maxlength="1" min="1" max="6">
+      </section>
+      <section class="title-and-input">
+        <span class="title">Cource of study</span>
+        <select class="select-value" name="course-of-study">
+          <option selected value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </section>
+      <section class="title-and-input">
+        <span class="title">Group number</span>
         <input required class="input-info" type="text" name="group-number" placeholder="ISA-123" maxlength="10">
-        <input required class="point" type="number" name="english" placeholder="2-5" min="2" max="5" maxlength="1">
-        <input required class="point" type="number" name="geometry-algebra" placeholder="2-5" min="2" max="5" maxlength="1">
-        <input required class="point" type="number" name="math-analysis" placeholder="2-5" min="2" max="5" maxlength="1">
-        <input required class="point" type="number" name="physics" placeholder="2-5" min="2" max="5" maxlength="1">
-        <input required class="point" type="number" name="computer-science" placeholder="2-5" min="2" max="5" maxlength="1">
-        <button id="submit-btn" type="submit">Register student</button>
+      </section>
+      <hr class="line">
+      <section class="title-and-input subjects-wrapper">
+        <span class="title subject-title">English</span>
+        <select class="select-value" name="english">
+          <option selected value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+        </select>
+      </section>
+      <section class="title-and-input subjects-wrapper">
+        <span class="title subject-title">Geometry and algebra</span>
+        <select class="select-value" name="geometry-algebra">
+          <option selected value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+        </select>
+      </section>
+      <section class="title-and-input subjects-wrapper">
+        <span class="title subject-title">Mathematical analysis</span>
+        <select class="select-value" name="math-analysis">
+          <option selected value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+        </select>
+      </section>
+      <section class="title-and-input subjects-wrapper">
+        <span class="title subject-title">Physics</span>
+        <select class="select-value" name="physics">
+          <option selected value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+        </select>
+      </section>
+      <section class="title-and-input subjects-wrapper">
+        <span class="title subject-title">Computer science</span>
+        <select class="select-value" name="computer-science">
+          <option selected value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+        </select>
+      </section>
+      <button id="submit-btn" type="submit">Register student</button>
     </form>
   </section>
 </div>
 
 <button onclick="toggleModalbox()" class="modalbox-open-btn">Show List of students</button>
 
-<div class="modalbox-container">
+<div class="modalbox-container ">
   <a class="modalbox__background"></a>
   <section class="modalbox">
     <section class="modalbox__header">
@@ -58,8 +107,6 @@
     </section>
   </section>
 </div>
-
-
 
 <script type="text/javascript" src="../scripts/students(exercise).js"></script>
 </body>
