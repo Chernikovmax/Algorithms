@@ -11,6 +11,7 @@ body {
 }
 
 .main-wrapper {
+  height: 80vh;
   min-width: 350px;
   width: 50vw;
   position: relative;
@@ -22,34 +23,70 @@ body {
   border-radius: 20px;
 }
 
-.main-title {
-  color: #fff;
-}
-
 .subwrapper {
   margin-top: 1rem;
+  height: 90%;
   width: 300px;
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
   background-color: rgb(255, 247, 212);
   padding: 20px;
   border-radius: 20px;
+}
+
+.main-title {
+  margin: 0;
+  color: #fff;
+}
+
+.register-student-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  width: 95%;
   position: relative;
+  top: 0;
+  margin-bottom: 35px;
+}
+
+.title-and-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.title {
+  padding-top: 5px;
+  position: relative;
+  z-index: 5;
+  height: 30px;
+  width: 130px;
+  color: rgb(84, 59, 11);
+}
+
+.subject-title {
+  width: 170px;
+  margin-right: 80px;
 }
 
 .input-info {
+  position: relative;
+  z-index: 2;
   height: 30px;
-  width: 200px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  height: 30px;
+  width: 150px;
   border: none;
   border-radius: 5px;
   background-color: rgb(255, 255, 255);
   padding-left: 15px;
 }
 
-.point {
-  width: 33px;
+.select-value {
+  width: 50px;
   height: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -60,51 +97,17 @@ body {
   font-size: 0.8rem;
 }
 
-.title {
-  height: 30px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  padding: 7px 5px 0 5px;
-  color: rgb(84, 59, 11);
-}
-
-.title:nth-of-type(5) {
-  margin-top: 0;
-}
-
 .line {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-color: rgb(96, 63, 0);
   size: 3px;
-  position: absolute;
-  width: 88%;
-  bottom: 47.5%;
-  margin-bottom: 15px;
-  border-color: rgb(125, 86, 0);
-}
-
-.subjects-wrapper {
-  margin-top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  min-width: 130px;
-  position: absolute;
-  bottom: 70px;
-}
-
-.title-wrapper{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.register-student {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
 }
 
 #submit-btn {
-  margin-top: 20px;
+  position: relative;
+  margin-left: 170px;
   width: 130px;
   height: 30px;
   border: none;
