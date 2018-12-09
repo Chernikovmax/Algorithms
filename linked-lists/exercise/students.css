@@ -11,10 +11,9 @@ body {
 }
 
 .main-wrapper {
-  height: 80vh;
+  min-height: 90vh;
   min-width: 350px;
   width: 50vw;
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,11 +24,11 @@ body {
 
 .subwrapper {
   margin-top: 1rem;
-  height: 90%;
+  min-height: 75vh;
   width: 300px;
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center;
   background-color: rgb(255, 247, 212);
   padding: 20px;
   border-radius: 20px;
@@ -44,11 +43,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 100%;
+  min-height: 67vh;
+  max-height: 72vh;
   width: 95%;
-  position: relative;
-  top: 0;
-  margin-bottom: 35px;
+  margin-bottom: 10px;
 }
 
 .title-and-input {
@@ -61,8 +59,6 @@ body {
 
 .title {
   padding-top: 5px;
-  position: relative;
-  z-index: 5;
   height: 30px;
   width: 130px;
   color: rgb(84, 59, 11);
@@ -74,8 +70,6 @@ body {
 }
 
 .input-info {
-  position: relative;
-  z-index: 2;
   height: 30px;
   height: 30px;
   width: 150px;
@@ -106,10 +100,10 @@ body {
 }
 
 #submit-btn {
-  position: relative;
+  margin-top: 2rem;
   margin-left: 170px;
   width: 130px;
-  height: 30px;
+  min-height: 30px;
   border: none;
   border-radius: 5px;
   background-color: rgb(96, 63, 0);
@@ -123,10 +117,14 @@ body {
 }
 
 .modalbox-open-btn {
+  position: absolute;
+  z-index: 5;
+  bottom: 0;
+  left: 0;
   width: 130px;
   height: 37px;
   border: none;
-  border-radius: 5px;
+  border-top-right-radius: 5px;
   background-color: rgb(96, 63, 0);
   color: rgb(231, 228, 222);
   font-size: 0.9rem;
@@ -172,23 +170,31 @@ body {
 }
 
 .modalbox__header {
+  height: 10%;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 
-.modalbox__title {
-  font-size: 2rem;
-  color: rgb(56, 41, 6);
+.open-course-select {
+  min-width: 5rem;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  padding-left: 5px;
+  font-size: 0.8rem;
 }
 
 .modalbox__close-btn {
   position: absolute;
+  top: 0;
   right: 0;
   border: none;
   border-top-right-radius: 5px;
   border-bottom-left-radius: 5px;
-  background-color: rgb(96, 63, 0);
+  background-color: rgb(237, 106, 12);
 }
 
 .cross {
@@ -198,7 +204,7 @@ body {
 }
 
 .modalbox__close-btn:hover {
-  background-color: rgb(125, 83, 3);
+  background-color: rgb(237, 66, 12);
 }
 
 .modalbox__close-btn:hover .cross {
@@ -206,5 +212,47 @@ body {
 }
 
 .modalbox__content {
-  overflow: hidden;
+  height: 85%;
+  width: 95%;
+  margin-left: 2.5%;
+  overflow-y: scroll;
+}
+
+.table-students {
+  height: 93%;
+  width: 100%;
+  border: 1px solid rgb(96, 63, 0);
+  border-collapse: collapse;
+  align
+}
+
+.table__title {
+  height: 30px;
+  font-size: 1.5rem;
+  color: rgb(56, 41, 6);
+  font-size: 1.1rem;
+}
+
+.table__header {
+  background-color: rgb(246, 240, 230);
+}
+
+.delete-student {
+  border: none;
+  border-radius: 50%;
+  background-color:  rgb(237, 106, 12);
+}
+
+.delete-student:hover {
+  background-color: rgb(237, 66, 12);
+}
+
+.table__body {
+  background-color: rgb(255, 255, 255);
+}
+
+.table__cell {
+  vertical-align: top;
+  text-align: center;
+  border: 1px solid rgb(96, 63, 0);
 }

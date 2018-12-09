@@ -162,8 +162,6 @@ register.addEventListener('submit',
     const student = new Student(lastNameInfo.value, firstNameInfo.value, patronymicInfo.value,
       birthdayInfo.value, courseOfStudyInfo, groupNumInfo.value);
 
-
-    // Code to work with server
     switch (courseOfStudyInfo) {
       case "1":
         course1.sortedAdd(student);
@@ -185,81 +183,30 @@ register.addEventListener('submit',
     register.reset();
 });
 
-// function deleteFromList() {
-//
-// }
-
-const modalbox = document.querySelector('.modalbox');
-
-const selectList = modalbox.querySelector('[name=open-a-course-list]');
-
-function printInfo(linkedList) {
-  const table = modalbox.querySelector('.table__body');
-
-  let current = linkedList.head;
-  while(current) {
-    let newRow = table.appendChild(document.createElement('tr'));
-
-
-    let newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = "1";
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.fullName}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.birthday}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.groupNumber}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.pointsBySubjects.english}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.pointsBySubjects.geometryAndAlgebra}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.pointsBySubjects.mathAn}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.pointsBySubjects.physics}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.pointsBySubjects.computerScience}`;
-
+function listToArr(obj) {
+  const currentStudents = [];
+  let current = obj.head;
+  while (current) {
+    currentStudents.push(JSON.stringify(current.value));
     current = current.next;
   }
-}
-
-function displayCourseList() {
-
-  const selectedListNum = selectList.options[selectList.selectedIndex].value;
-  switch (selectedListNum) {
+  const result = currentStudents.join('; ');
+  switch (obj.head.value.courceOfStudy) {
     case "1":
-      return printInfo(course1);
+      return localStorage.setItem("Students-of-the-1-Course", JSON.stringify(result));
     case "2":
-      return printInfo(course2);
+      return localStorage.setItem("Students-of-the-2-Course", JSON.stringify(result));
     case "3":
-      return printInfo(course3);
+      return localStorage.setItem("Students-of-the-3-Course", JSON.stringify(result));
     case "4":
-      return printInfo(course4);
+      return localStorage.setItem("Students-of-the-4-Course", JSON.stringify(result));
     case "5":
-      return printInfo(course5);
+      return localStorage.setItem("Students-of-the-5-Course", JSON.stringify(result));
   }
 }
 
-
-
+// How to get an object from localStore
+// JSON.parse(JSON.parse(localStorage.getItem("Students-of-the-2-Course")).split(";")[0])
 
 
 function toggleModalbox() {

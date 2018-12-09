@@ -94,16 +94,58 @@
 
 <button onclick="toggleModalbox()" class="modalbox-open-btn">Show List of students</button>
 
-<div class="modalbox-container ">
+<div class="modalbox-container modalbox--active">
   <a class="modalbox__background"></a>
   <section class="modalbox">
     <section class="modalbox__header">
-      <h2 class="modalbox__title">Students</h2>
+      <select class="open-course-select" name="open-a-course-list" onchange="displayCourseList()">
+        <option selected value="0">Choose a course num</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
       <button onclick="toggleModalbox()" class="modalbox__close-btn"><div class="cross">+</div></button>
     </section>
     <section class="modalbox__content">
-
-
+      <table class="table-students" cols="9">
+        <caption class="table__title">
+          Students studying on the selected course
+        </caption>
+        <thead class="table__header">
+          <tr class="table__row">
+            <th class="table__cell" rowspan="2">№</th>
+            <th class="table__cell" rowspan="2">Full Name of student</th>
+            <th class="table__cell" rowspan="2">Year of birth</th>
+            <th class="table__cell" rowspan="2">Group number</th>
+            <th class="table__cell" colspan="5">Points by Subjects</th>
+          </tr>
+          <tr class="table__row">
+            <th class="table__cell">English</th>
+            <th class="table__cell">Geometry and algebra</th>
+            <th class="table__cell">Mathematical analysis</th>
+            <th class="table__cell">Physics</th>
+            <th class="table__cell">Computer science</th>
+          </tr>
+          <tbody class="table__body">
+            <!-- <tr>
+              <td class="table__cell">
+                1
+                <button class="delete-student" alt="Delete" onclick="deleteFromList()"><div class="cross">+</div></button>
+              </td>
+              <td class="table__cell">Chernikov Maxim Sergeevich</td>
+              <td class="table__cell">04-07-1993</td>
+              <td class="table__cell">ARCH-2017</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+            </tr> -->
+          </tbody>
+        </thead>
+      </table>
     </section>
   </section>
 </div>
