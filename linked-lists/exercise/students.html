@@ -94,7 +94,7 @@
 
 <button onclick="toggleModalbox()" class="modalbox-open-btn">Show List of students</button>
 
-<div class="modalbox-container modalbox--active">
+<div class="modalbox-container">
   <a class="modalbox__background"></a>
   <section class="modalbox">
     <section class="modalbox__header">
@@ -106,7 +106,7 @@
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
-      <button onclick="toggleModalbox()" class="modalbox__close-btn"><div class="cross">+</div></button>
+      <button onclick="clearAndCloseModal()" class="modalbox__close-btn"><div class="cross">+</div></button>
     </section>
     <section class="modalbox__content">
       <table class="table-students" cols="9">
@@ -129,10 +129,10 @@
             <th class="table__cell">Computer science</th>
           </tr>
           <tbody class="table__body">
-            <!-- <tr>
+            <tr>
               <td class="table__cell">
                 1
-                <button class="delete-student" alt="Delete" onclick="deleteFromList()"><div class="cross">+</div></button>
+                <button onclick="deleteFromList()" class="cross2">+</button>
               </td>
               <td class="table__cell">Chernikov Maxim Sergeevich</td>
               <td class="table__cell">04-07-1993</td>
@@ -142,7 +142,49 @@
               <td class="table__cell">5</td>
               <td class="table__cell">5</td>
               <td class="table__cell">5</td>
-            </tr> -->
+            </tr>
+            <tr>
+              <td class="table__cell">
+                1
+                <button onclick="deleteFromList()" class="cross2">+</button>
+              </td>
+              <td class="table__cell">Chernikov Maxim Sergeevich</td>
+              <td class="table__cell">04-07-1993</td>
+              <td class="table__cell">ARCH-2017</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+            </tr>
+            <tr>
+              <td class="table__cell">
+                1
+                <button onclick="deleteFromList()" class="cross2">+</button>
+              </td>
+              <td class="table__cell">Chernikov Maxim Sergeevich</td>
+              <td class="table__cell">04-07-1993</td>
+              <td class="table__cell">ARCH-2017</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+            </tr>
+            <tr>
+              <td class="table__cell">
+                1
+                <a onclick="deleteFromList()" class="cross2">+</a>
+              </td>
+              <td class="table__cell">Chernikov Maxim Sergeevich</td>
+              <td class="table__cell">04-07-1993</td>
+              <td class="table__cell">ARCH-2017</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+              <td class="table__cell">5</td>
+            </tr>
           </tbody>
         </thead>
       </table>

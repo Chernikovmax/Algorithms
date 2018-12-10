@@ -185,25 +185,27 @@ register.addEventListener('submit',
     register.reset();
 });
 
-// function deleteFromList() {
-//
-// }
-
 const modalbox = document.querySelector('.modalbox');
 
 const selectList = modalbox.querySelector('[name=open-a-course-list]');
+const table = modalbox.querySelector('.table__body');
 
 function printInfo(linkedList) {
-  const table = modalbox.querySelector('.table__body');
 
   let current = linkedList.head;
+  let counter = 1;
   while(current) {
     let newRow = table.appendChild(document.createElement('tr'));
 
-
     let newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = "1";
+    newCell.className = "table__cell";;
+    let deleteStudentBtn = document.createElement('button');
+    deleteStudentBtn.className = "cross2";
+    deleteStudentBtn.id = `student${counter}`;
+    deleteStudentBtn.setAttribute ('onclick', 'deleteFromList()');
+    deleteStudentBtn.innerHTML = "+";
+    newCell.innerHTML = `${counter}`;
+    newCell.appendChild(deleteStudentBtn);
 
     newCell = newRow.appendChild(document.createElement('td'));
     newCell.className = "table__cell";
@@ -238,6 +240,14 @@ function printInfo(linkedList) {
     newCell.innerHTML = `${current.value.pointsBySubjects.computerScience}`;
 
     current = current.next;
+    counter++;
+  }
+}
+
+function clearTable() {
+  const tBody = table.querySelectorAll('tr');
+  for (i = 0; i < tBody.length; i++) {
+    table.removeChild(tBody[i]);
   }
 }
 
@@ -246,30 +256,53 @@ function displayCourseList() {
   const selectedListNum = selectList.options[selectList.selectedIndex].value;
   switch (selectedListNum) {
     case "1":
+      clearTable()
       return printInfo(course1);
     case "2":
+      clearTable()
       return printInfo(course2);
     case "3":
+      clearTable()
       return printInfo(course3);
     case "4":
+      clearTable()
       return printInfo(course4);
     case "5":
+      clearTable()
       return printInfo(course5);
   }
 }
-
-
-
-
 
 function toggleModalbox() {
   const modalDialog = document.querySelector('.modalbox-container');
   modalDialog.classList.toggle('modalbox--active')
 }
 
+function clearAndCloseModal() {
+  clearTable();
+  selectList.options[0].selected = true;
+  toggleModalbox()
+}
 
+function deleteFromList() {
+  switch (selectedListNum) {
+    case "1":
 
+      return printInfo(course1);
+    case "2":
 
+      return printInfo(course2);
+    case "3":
+
+      return printInfo(course3);
+    case "4":
+
+      return printInfo(course4);
+    case "5":
+
+      return printInfo(course5);
+  }
+}
 
 // Дан список студентов. Элемент списка содержит фамилию, имя, отчество, год рождения,
 // курс, номер группы, оценки по пяти предметам. Упорядочите студентов по курсу,
