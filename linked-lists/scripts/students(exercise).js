@@ -55,7 +55,13 @@ class DoublyLinkedList {
     }
   }
   removeAt(position) {
-    if (position === 0) {
+    if (position === 0 && this.length === 1) {
+      this.head = null;
+      this.tail = null;
+      this.length--;
+      return this;
+    }
+    if (position === 0 && this.length > 1) {
       this.head.next.prev = null;
       this.head = this.head.next;
       this.length--;
@@ -190,59 +196,6 @@ const modalbox = document.querySelector('.modalbox');
 const selectList = modalbox.querySelector('[name=open-a-course-list]');
 const table = modalbox.querySelector('.table__body');
 
-function printInfo(linkedList) {
-
-  let current = linkedList.head;
-  let counter = 1;
-  while(current) {
-    let newRow = table.appendChild(document.createElement('tr'));
-
-    let newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";;
-    let deleteStudentBtn = document.createElement('button');
-    deleteStudentBtn.className = "cross2";
-    deleteStudentBtn.id = `student${counter}`;
-    deleteStudentBtn.setAttribute ('onclick', 'deleteFromList()');
-    deleteStudentBtn.innerHTML = "+";
-    newCell.innerHTML = `${counter}`;
-    newCell.appendChild(deleteStudentBtn);
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.fullName}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.birthday}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.groupNumber}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.pointsBySubjects.english}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.pointsBySubjects.geometryAndAlgebra}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.pointsBySubjects.mathAn}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.pointsBySubjects.physics}`;
-
-    newCell = newRow.appendChild(document.createElement('td'));
-    newCell.className = "table__cell";
-    newCell.innerHTML = `${current.value.pointsBySubjects.computerScience}`;
-
-    current = current.next;
-    counter++;
-  }
-}
 
 function clearTable() {
   const tBody = table.querySelectorAll('tr');
@@ -284,29 +237,76 @@ function clearAndCloseModal() {
   toggleModalbox()
 }
 
-function deleteFromList() {
-  switch (selectedListNum) {
-    case "1":
 
-      return printInfo(course1);
-    case "2":
+function printInfo(linkedList) {
 
-      return printInfo(course2);
-    case "3":
+  let current = linkedList.head;
+  let counter = 1;
+  while(current) {
+    let newRow = table.appendChild(document.createElement('tr'));
 
-      return printInfo(course3);
-    case "4":
+    let newCell = newRow.appendChild(document.createElement('td'));
+    newCell.className = "table__cell";;
+    let deleteStudentBtn = document.createElement('button');
+    deleteStudentBtn.className = "cross2";
+    deleteStudentBtn.id = `${counter}`;
+    deleteStudentBtn.addEventListener('click', () => {
+      const selectedListNum = selectList.options[selectList.selectedIndex].value;
+      switch (selectedListNum) {
+        case "1":
+          course1.removeAt(deleteStudentBtn.id - 1);
+          return displayCourseList();
+        case "2":
+          course2.removeAt(deleteStudentBtn.id - 1);
+          return displayCourseList();
+        case "3":
+          course3.removeAt(deleteStudentBtn.id - 1);
+          return displayCourseList();
+        case "4":
+          course4.removeAt(deleteStudentBtn.id - 1);
+          return displayCourseList();
+        case "5":
+          course5.removeAt(deleteStudentBtn.id - 1);
+          return displayCourseList();
+      }
+    });
+    deleteStudentBtn.innerText = "+";
+    newCell.innerHTML = `${counter}`;
+    newCell.appendChild(deleteStudentBtn);
 
-      return printInfo(course4);
-    case "5":
+    newCell = newRow.appendChild(document.createElement('td'));
+    newCell.className = "table__cell";
+    newCell.innerHTML = `${current.value.fullName}`;
 
-      return printInfo(course5);
+    newCell = newRow.appendChild(document.createElement('td'));
+    newCell.className = "table__cell";
+    newCell.innerHTML = `${current.value.birthday}`;
+
+    newCell = newRow.appendChild(document.createElement('td'));
+    newCell.className = "table__cell";
+    newCell.innerHTML = `${current.value.groupNumber}`;
+
+    newCell = newRow.appendChild(document.createElement('td'));
+    newCell.className = "table__cell";
+    newCell.innerHTML = `${current.value.pointsBySubjects.english}`;
+
+    newCell = newRow.appendChild(document.createElement('td'));
+    newCell.className = "table__cell";
+    newCell.innerHTML = `${current.value.pointsBySubjects.geometryAndAlgebra}`;
+
+    newCell = newRow.appendChild(document.createElement('td'));
+    newCell.className = "table__cell";
+    newCell.innerHTML = `${current.value.pointsBySubjects.mathAn}`;
+
+    newCell = newRow.appendChild(document.createElement('td'));
+    newCell.className = "table__cell";
+    newCell.innerHTML = `${current.value.pointsBySubjects.physics}`;
+
+    newCell = newRow.appendChild(document.createElement('td'));
+    newCell.className = "table__cell";
+    newCell.innerHTML = `${current.value.pointsBySubjects.computerScience}`;
+
+    current = current.next;
+    counter++;
   }
 }
-
-// Дан список студентов. Элемент списка содержит фамилию, имя, отчество, год рождения,
-// курс, номер группы, оценки по пяти предметам. Упорядочите студентов по курсу,
-// причем студенты одного курса располагались в алфавитном порядке. Найдите средний
-// балл каждой группы по каждому предмету. Определите самого старшего студента и самого
-// младшего студентов. Для каждой группы найдите лучшего с точки зрения успеваемости
-// студента.
