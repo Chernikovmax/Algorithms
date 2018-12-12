@@ -49,7 +49,7 @@ body {
   margin-bottom: 10px;
 }
 
-.title-and-input {
+.form-field {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -70,7 +70,6 @@ body {
 }
 
 .input-info {
-  height: 30px;
   height: 30px;
   width: 150px;
   border: none;
@@ -197,12 +196,6 @@ body {
   background-color: rgb(237, 106, 12);
 }
 
-.cross {
-  color: rgb(231, 228, 222);
-  font-size: 1.5rem;
-  transform: rotate(45deg);
-}
-
 .modalbox__close-btn:hover {
   background-color: rgb(237, 66, 12);
 }
@@ -223,12 +216,10 @@ body {
   width: 100%;
   border: 1px solid rgb(96, 63, 0);
   border-collapse: collapse;
-  align
 }
 
 .table__title {
   height: 30px;
-  font-size: 1.5rem;
   color: rgb(56, 41, 6);
   font-size: 1.1rem;
 }
@@ -245,24 +236,4 @@ body {
   vertical-align: top;
   text-align: center;
   border: 1px solid rgb(96, 63, 0);
-}
-
-.cross2 {
-  display: inline-block;
-  text-align: justify;
-  height: 30px;
-  width: 30px;
-  border: none;
-  border-radius: 50%;
-  background-color: transparent;
-  color: rgb(237, 106, 12);
-  font-size: 1.5rem;
-  transform: rotate(45deg);
-  margin-left: 12px;
-}
-
-.cross2:hover {
-  color: rgb(237, 66, 12);
-  font-size: 2rem;
-  margin-left: 18px;
 }
