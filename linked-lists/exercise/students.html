@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Student registration</title>
+  <link rel="stylesheet" href="students.css">
+</head>
+<body>
+
+<div class="main-wrapper">
+  <h1 class="main-title">Add a new student's info here</h1>
+  <section class="subwrapper">
+    <form class="register-student-form">
+      <section class="form-field">
+        <span class="title">Last Name</span>
+        <input required autofocus class="input-info" type="text" name="last-name" placeholder="Ivanov" maxlength="30">
+      </section>
+      <section class="form-field">
+        <span class="title">First Name</span>
+        <input required class="input-info" type="text" name="first-name" placeholder="Ivan" maxlength="15">
+      </section>
+      <section class="form-field">
+        <span class="title">Patronymic</span>
+        <input required class="input-info" type="text" name="patronymic" placeholder="Ivanovich" maxlength="15">
+      </section>
+      <section class="form-field">
+        <label for="birthday" class="title">Birthday</label>
+        <input required class="input-info" id="birthday" type="date" name="birthday" maxlength="8"  min="1940-01-01" max="2005-31-12">
+      </section>
+      <section class="form-field">
+        <span class="title">Cource of study</span>
+        <select class="select-value" name="course-of-study">
+          <option selected value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </section>
+      <section class="form-field">
+        <span class="title">Group number</span>
+        <input required class="input-info" type="text" name="group-number" placeholder="ISA-123" maxlength="10">
+      </section>
+      <hr class="line">
+      <section class="form-field subjects-wrapper">
+        <span class="title subject-title">English</span>
+        <select class="select-value" name="english">
+          <option selected value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+        </select>
+      </section>
+      <section class="form-field subjects-wrapper">
+        <span class="title subject-title">Geometry and algebra</span>
+        <select class="select-value" name="geometry-algebra">
+          <option selected value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+        </select>
+      </section>
+      <section class="form-field subjects-wrapper">
+        <span class="title subject-title">Mathematical analysis</span>
+        <select class="select-value" name="math-analysis">
+          <option selected value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+        </select>
+      </section>
+      <section class="form-field subjects-wrapper">
+        <span class="title subject-title">Physics</span>
+        <select class="select-value" name="physics">
+          <option selected value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+        </select>
+      </section>
+      <section class="form-field subjects-wrapper">
+        <span class="title subject-title">Computer science</span>
+        <select class="select-value" name="computer-science">
+          <option selected value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+        </select>
+      </section>
+      <button id="submit-btn" type="submit">Register student</button>
+    </form>
+  </section>
+</div>
+
+<button onclick="toggleModalbox()" class="modalbox-open-btn">Show List of students</button>
+
+<div class="modalbox-container">
+  <a class="modalbox__background"></a>
+  <section class="modalbox">
+    <section class="modalbox__header">
+      <select class="open-course-select" name="open-a-course-list" onchange="onCourseChanged()">
+        <option selected value="0">Choose a course num</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <button onclick="clearAndCloseModal()" class="modalbox__close-btn">
+        x
+      </button>
+    </section>
+    <section class="modalbox__content">
+      <table class="table-students" cols="9">
+        <caption class="table__title">
+          Students studying on the selected course
+        </caption>
+        <thead class="table__header">
+          <tr class="table__row">
+            <th class="table__cell" rowspan="2">№</th>
+            <th class="table__cell" rowspan="2">Full Name of student</th>
+            <th class="table__cell" rowspan="2">Year of birth</th>
+            <th class="table__cell" rowspan="2">Group number</th>
+            <th class="table__cell" colspan="5">Points by Subjects</th>
+          </tr>
+          <tr class="table__row">
+            <th class="table__cell">English</th>
+            <th class="table__cell">Geometry and algebra</th>
+            <th class="table__cell">Mathematical analysis</th>
+            <th class="table__cell">Physics</th>
+            <th class="table__cell">Computer science</th>
+          </tr>
+        </thead>
+        <tbody class="table__body">
+        </tbody>
+      </table>
+    </section>
+  </section>
+</div>
+
+<script type="text/javascript" src="../scripts/DoublyLinkedList.js"></script>
+<script type="text/javascript" src="../scripts/Student.js"></script>
+<script type="text/javascript" src="../scripts/renderMethods.js"></script>
+</body>
+</html>
