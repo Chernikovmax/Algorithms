@@ -19,10 +19,10 @@ class Graph {
     this.neededToVisit--;
     this._findCostOfNearPeaks(start);
 
-    if (this.neededToVisit === 0) {
-      return this.visited[end]
-    } else this._loopThroughTheRest();
-    // HERE THIS PLACE!
+    while (this.neededToVisit !== 0) {
+      this._loopThroughTheRest();
+    }
+      return this.visited[this.endPeak];
   }
 
   _createLists() {
@@ -35,7 +35,6 @@ class Graph {
   }
 
   _findCostOfNearPeaks(currentPeak) {
-    console.log("И начался опять _findCostOfNearPeaks(currentPeak)");
     let currentPeakRibs = this.graph[currentPeak];
     let lowestCost = Number.POSITIVE_INFINITY, lowestCostPeakKey;
     if (JSON.stringify(this.lowCostList) === "{}") {
@@ -45,7 +44,6 @@ class Graph {
 
           this.notVisited[i] = currentPeakRibs[i] + this.visited[currentPeak];
           this.routes[i] = parseInt(currentPeak, 10);
-          console.log(`1 New cost of peak: ${i} is: ${this.notVisited[i]}`);
           this.lowCostList[i] = this.notVisited[i];
           if (lowestCost > this.notVisited[i]) {
             lowestCost = this.notVisited[i];
@@ -69,7 +67,6 @@ class Graph {
       this.neededToVisit--;
     } else return;
 
-    console.log(`2 Next peak is ${lowestCostPeakKey}, it's cost is ${lowestCost}`);
     this.visited[lowestCostPeakKey] = lowestCost;
     delete this.lowCostList[lowestCostPeakKey];
     delete this.notVisited[lowestCostPeakKey];
@@ -77,7 +74,6 @@ class Graph {
     this._nextPeaksCostUpdate(lowestCostPeakKey);
     this._findCostOfNearPeaks(currentPeak);
   }
-
   _nextPeaksCostUpdate(peak) {
     let currentPeakRibs = this.graph[peak];
     for (let i = 0; i < currentPeakRibs.length; i++) {
@@ -87,22 +83,25 @@ class Graph {
         this.notVisited[i] = currentPeakRibs[i] + this.visited[peak];
         this.routes[i] = parseInt(peak, 10);
         if (i in this.lowCostList) this.lowCostList[i] = this.notVisited[i];
-        console.log(`3 New cost of peak ${i} is ${this.notVisited[i]}`);
       }
     }
-    console.log('ПРОШЁЛ   _nextPeaksCostUpdate(peak)');
   }
 
   _loopThroughTheRest() {
-    console.log("_loopThroughTheRest");
     for (let key in this.notVisited) {
       this.visited[key] = this.notVisited[key];
-      delete this.notVisited[this.startPeak];
       this.neededToVisit--;
-
-      if (this.neededToVisit === 0) return this.visited[this.endPeak];
       this._findCostOfNearPeaks(key);
     }
+  }
+
+  _displayRouteFromStartToPeak(peak) {
+    let result = [peak];
+    for (let i = peak; i !== this.startPeak; ) {
+      result.push(this.routes[i]);
+      i = this.routes[i];
+    }
+    return console.log((result.reverse()).join('-'));
   }
 }
 
@@ -111,5 +110,8 @@ const graph = new Graph([[0, 4, 3, 0, 7, 0, 0], [4, 0, 6, 5, 0, 0, 0], [3, 6, 0,
 const graph2 = new Graph([[0, 10, 30, 50, 10], [0, 0, 0, 0, 0], [0, 0, 0, 0, 10], [0, 40, 20, 0, 0], [10, 0, 10, 30, 0]]);
 
 console.log(graph.dijkstraAlg(0, 5));
-console.log(graph.visited);
+console.log('Routes to the peaks ("peak": "way through the peak"):');
 console.log(graph.routes);
+console.log('All peaks with their cost ("peak": "cost"):');
+console.log(graph.visited);
+graph._displayRouteFromStartToPeak(6);
