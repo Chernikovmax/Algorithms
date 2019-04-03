@@ -180,7 +180,5 @@ class LinkedList {
   }
 }
 
-const list = new LinkedList("1").addToHead('2', '3', '4', '5', '6');
-
-
-console.log(list.removeFromIndex(1, 6));
+const singlyLinkedList = new LinkedList("1").addToHead('2', '3', '4', '5', '6');
+console.log(singlyLinkedList);

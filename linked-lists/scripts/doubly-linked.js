@@ -286,6 +286,6 @@ class DoublyLinkedList {
   }
 }
 
-let list = new DoublyLinkedList('1', '2', '3', '4', '5', '6', '7');
+let doublyLinkedList = new DoublyLinkedList('1', '2', '3', '4', '5', '6', '7');
 
-console.log(list.findPosition());
+console.log(doublyLinkedList);
