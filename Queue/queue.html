@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 1</title>
+  <link rel="stylesheet" href="queue.css">
+</head>
+<body>
+
+<div class="wrapper">
+  <h3>Queue</h3>
+    <section class="input-field">
+      <label for="add">Add value to Queue</label>
+      <input type="number" id="add" />
+    </section>
+    <button id="enqueue" onclick="enqueue()">Enqueue</button>
+
+    <button id="dequeue" onclick="dequeue()">Dequeue</button>
+  <div class="display">
+    <span class="printed-queue">Queue:</span>
+    <span class="queue-start">Start of queue: undefined</span>
+    <span class="queue-end">End of queue: undefined</span>
+  </div>
+</div>
+
+<script type="text/javascript" src="queue.js"></script>
+</body>
+</html>
