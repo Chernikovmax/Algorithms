@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 1</title>
+  <link rel="stylesheet" href="stack.css">
+</head>
+<body>
+
+<div class="wrapper">
+  <h3>Stack 1</h3>
+    <section class="stack-field">
+      <label for="add-in-first">Add value 1n 1st stack</label>
+      <input type="number" id="add-in-first" />
+    </section>
+    <button id="add-to-1" onclick="addTo1()">in</button>
+
+    <button id="out-from-1" onclick="deleteFromStack1()">Delete from stack 1</button>
+  <h3>Stack 2</h3>
+    <section class="stack-field">
+      <label for="add-in-second">Add value in 2nd stack</label>
+      <input type="number" id="add-in-second" />
+    </section>
+    <button id="add-to-2" onclick="addTo2()">in</button>
+
+    <button id="out-from-2" onclick="deleteFromStack2()">Delete from stack 2</button>
+  <div class="display">
+    <span>Stacks:</span>
+    <span class="stack1">Stack №1: empty</span>
+    <span class="stack2">Stack №2: empty</span>
+  </div>
+</div>
+
+<script type="text/javascript" src="stack.js"></script>
+</body>
+</html>
