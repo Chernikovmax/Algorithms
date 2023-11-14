@@ -1,0 +1,22 @@
+<p class="binary-search-list">{{recordsList}}</p>
+<div class="app-row binary-search-controls">
+    <input
+            class="binary-search-controls__input"
+            type="text"
+            [(ngModel)]="nameToFind"
+    />
+    <button
+            [disabled]="!nameToFind?.length"
+            (click)="searchName()"
+    >
+        search
+    </button>
+    <button
+            [disabled]="!nameToFind || !searchResult"
+            (click)="clearSearch()"
+    >
+        clear search
+    </button>
+</div>
+
+<p>{{result}}</p>

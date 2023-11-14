@@ -1,0 +1,21 @@
+@import "../../../../variables";
+
+:host {
+  @extend %app-column;
+}
+
+.binary-search-list {
+  white-space: pre;
+}
+
+.binary-search-controls {
+  margin-right: 1rem;
+
+  button {
+    margin-left: 1rem;
+  }
+
+  .binary-search-controls__input {
+    width: 500px;
+  }
+}

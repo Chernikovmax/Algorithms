@@ -1,0 +1,9 @@
+@import "variables";
+
+.app-row {
+  @extend %app-row;
+}
+
+.app-column {
+  @extend %app-column;
+}
