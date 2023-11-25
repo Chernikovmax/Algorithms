@@ -1,0 +1,24 @@
+<nav class="main-menu">
+    <a
+            class="main-menu_item"
+            [class.main-menu_item--active]="router.url === '/binary-search'"
+            (click)="routeTo('binary-search')"
+    >
+        Binary search
+    </a>
+    <a
+            class="main-menu_item"
+            [class.main-menu_item--active]="router.url === '/linked-list'"
+            (click)="routeTo('linked-list')"
+    >
+        Linked list
+    </a>
+    <a
+            class="main-menu_item"
+            [class.main-menu_item--active]="router.url === '/doubly-linked-list'"
+            (click)="routeTo('doubly-linked-list')"
+    >
+        Doubly Linked list
+    </a>
+    <span class="main-menu_item_dash"></span>
+</nav>

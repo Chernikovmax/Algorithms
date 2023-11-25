@@ -6,17 +6,19 @@
             [(ngModel)]="nameToFind"
     />
     <button
+            class="binary-search-controls__btn"
             [disabled]="!nameToFind?.length"
             (click)="searchName()"
     >
-        search
+        Search
     </button>
     <button
+            class="binary-search-controls__btn"
             [disabled]="!nameToFind || !searchResult"
             (click)="clearSearch()"
     >
-        clear search
+        Clear search
     </button>
 </div>
 
-<p>{{result}}</p>
+<p class="binary-search_output">{{result}}</p>

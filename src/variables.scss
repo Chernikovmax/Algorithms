@@ -1,3 +1,6 @@
+$text-color: rgba(0, 0, 0, 0.67);
+$regular-btn-color: #123;
+
 %app-column {
   display: flex;
   flex-direction: column;
@@ -6,4 +9,30 @@
 %app-row {
   display: flex;
   flex-direction: row;
+}
+
+%highline-styles {
+  background: #ffffff06;
+  color: #adf;
+}
+
+%btn-base {
+  cursor: pointer;
+  color: #9ab;
+  padding: .75em;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all .5s;
+
+  &:hover {
+    @extend %highline-styles;
+  }
+}
+
+%btn-styles {
+  @extend %btn-base;
+  background-color: $regular-btn-color;
+  border: none;
+  border-radius: 0.8rem;
 }

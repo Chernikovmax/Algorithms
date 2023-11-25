@@ -6,12 +6,15 @@
 
 .binary-search-list {
   white-space: pre;
+  margin-bottom: 1rem;
 }
 
 .binary-search-controls {
   margin-right: 1rem;
+  margin-bottom: 1rem;
 
-  button {
+  .binary-search-controls__btn {
+    @extend %btn-styles;
     margin-left: 1rem;
   }
 

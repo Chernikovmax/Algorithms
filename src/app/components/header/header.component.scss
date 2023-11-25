@@ -1,0 +1,32 @@
+@import "../../../variables";
+
+:host {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+}
+
+.main-menu {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(var(--items), 1fr);
+  position: relative;
+  background-color: #123;
+  background-image: linear-gradient(to bottom, #0003, transparent);
+  border-bottom: 1px solid #0003;
+  box-shadow: 0 0 32px #0003;
+  font-size: 2em;
+  font-weight: 300;
+
+  .main-menu_item {
+    @extend %btn-base;
+    transition: all ease 0.5s;
+    border-bottom: 1px solid transparent;
+  }
+
+  .main-menu_item--active {
+    border-color: whitesmoke;
+  }
+}
