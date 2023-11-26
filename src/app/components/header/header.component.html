@@ -20,5 +20,11 @@
     >
         Doubly Linked list
     </a>
-    <span class="main-menu_item_dash"></span>
+    <a
+            class="main-menu_item"
+            [class.main-menu_item--active]="router.url === '/stack'"
+            (click)="routeTo('stack')"
+    >
+        Stack
+    </a>
 </nav>

@@ -4,6 +4,7 @@
             class="binary-search-controls__input"
             type="text"
             [(ngModel)]="nameToFind"
+            (keydown.enter)="searchName()"
     />
     <button
             class="binary-search-controls__btn"

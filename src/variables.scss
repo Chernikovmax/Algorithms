@@ -12,12 +12,17 @@ $regular-btn-color: #123;
 }
 
 %highline-styles {
-  background: #ffffff06;
-  color: #adf;
+  &:not(:disabled) {
+    background: #ffffff06;
+    color: #adf;
+  }
 }
 
 %btn-base {
-  cursor: pointer;
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
   color: #9ab;
   padding: .75em;
   font-size: 1rem;
@@ -32,7 +37,11 @@ $regular-btn-color: #123;
 
 %btn-styles {
   @extend %btn-base;
-  background-color: $regular-btn-color;
+
+  &:not(:disabled) {
+    background-color: $regular-btn-color;
+  }
+
   border: none;
   border-radius: 0.8rem;
 }

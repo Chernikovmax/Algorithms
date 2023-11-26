@@ -1,0 +1,26 @@
+<div class="app-row stack-controls">
+    <input
+            class="stack-controls__input"
+            type="text"
+            placeholder="Enter only '(', ')', '{', '}', '[' and ']' to determine if the input string is valid"
+            [(ngModel)]="testStr"
+            (ngModelChange)="clearPrevResult()"
+            (keydown.enter)="checkString()"
+    />
+    <button
+            class="stack-controls__btn"
+            [disabled]="!testStr?.length"
+            (click)="checkString()"
+    >
+        Check
+    </button>
+    <button
+            class="stack-controls__btn"
+            [disabled]="!testStr || !testResults"
+            (click)="clearTest()"
+    >
+        Clear search
+    </button>
+</div>
+
+<p class="binary-search_output">{{testResults}}</p>
