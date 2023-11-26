@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StackComponent } from './stack.component';
+import { StackQueueComponent } from './stack-queue.component';
 
 describe('StackComponent', () => {
-  let component: StackComponent;
-  let fixture: ComponentFixture<StackComponent>;
+  let component: StackQueueComponent;
+  let fixture: ComponentFixture<StackQueueComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StackComponent ]
+      declarations: [ StackQueueComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StackComponent);
+    fixture = TestBed.createComponent(StackQueueComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

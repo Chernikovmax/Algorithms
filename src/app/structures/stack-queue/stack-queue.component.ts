@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {StrStack} from "./algorithm";
 import {closingParentheses, validParenthesesSet} from "./constants";
+import {StrStack} from "./stack-algorithm";
 
 @Component({
-    selector: 'app-stack',
-    templateUrl: './stack.component.html',
-    styleUrls: ['./stack.component.scss']
+    selector: 'app-stack-queue',
+    templateUrl: './stack-queue.component.html',
+    styleUrls: ['./stack-queue.component.scss']
 })
-export class StackComponent implements OnInit {
-    testStr = '';
-    testResults = '';
+export class StackQueueComponent implements OnInit {
+    testStackStr = '';
+    stackResults = '';
 
     constructor() {
     }
@@ -18,20 +18,20 @@ export class StackComponent implements OnInit {
     }
 
     checkString() {
-        if (!this.testStr.length) {
+        if (!this.testStackStr.length) {
             return;
         }
         const stack = new StrStack();
-        for (let i = 0; i < this.testStr.length; i++) {
-            const curSym = this.testStr[i];
+        for (let i = 0; i < this.testStackStr.length; i++) {
+            const curSym = this.testStackStr[i];
             if (!validParenthesesSet.has(curSym)) {
-                this.testResults = 'false';
+                this.stackResults = 'false';
                 return
             }
             const awaitingSym: string | undefined = closingParentheses[curSym];
 
             if (!stack.length && awaitingSym) {
-                this.testResults = 'false';
+                this.stackResults = 'false';
                 return
             }
 
@@ -40,21 +40,21 @@ export class StackComponent implements OnInit {
             } else {
                 const sliced = stack.remove();
                 if (sliced !== awaitingSym) {
-                    this.testResults = 'false';
+                    this.stackResults = 'false';
                     return
                 }
             }
         }
-        this.testResults = `${!stack.length}`;
+        this.stackResults = `${!stack.length}`;
         return;
     }
 
     clearTest() {
-        this.testStr = '';
-        this.testResults = '';
+        this.testStackStr = '';
+        this.stackResults = '';
     }
 
     clearPrevResult() {
-        this.testResults = '';
+        this.stackResults = '';
     }
 }

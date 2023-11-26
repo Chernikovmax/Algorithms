@@ -1,22 +1,24 @@
-class StackNode {
-    value: any;
-    next = null;
+import {StackNodeT, StackT} from "./types";
 
-    constructor(value: any) {
+class StackNode implements StackNodeT {
+    value: object | null;
+    next: StackNodeT | null = null;
+
+    constructor(value: object | null) {
         this.value = value;
     }
 }
 
-export class Stack {
-    head: any = null;
-    tail: any = null;
+export class Stack implements StackT {
+    head: StackNodeT | null = null;
+    tail: StackNodeT | null = null;
     length = 0;
 
-    constructor(...values: any) {
-
+    constructor(...values: object[]) {
+         values.forEach(obj => this.add(obj));
     }
 
-    add(value: any) {
+    add(value: object | null) {
         const node = new StackNode(value);
         node.next = this.head;
 
@@ -36,7 +38,7 @@ export class Stack {
         }
 
         const prevHead = this.head;
-        this.head = this.head.next;
+        this.head = this.head.next as StackNodeT;
         this.length--;
 
         if (!this.head) { // if removed node was the last
@@ -47,7 +49,6 @@ export class Stack {
     }
 }
 
-// '()[]{}'
 export class StrStack {
     private stack: string[] = [];
 

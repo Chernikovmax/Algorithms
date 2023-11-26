@@ -8,7 +8,7 @@ import { LinkedListComponent } from './structures/linked-list/linked-list.compon
 import { DoublyLinkedListComponent } from './structures/doubly-linked-list/doubly-linked-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BodyComponent } from './components/body/body.component';
-import { StackComponent } from './structures/stack/stack.component';
+import { StackQueueComponent } from './structures/stack-queue/stack-queue.component';
 import {FormsModule} from "@angular/forms";
 
 @NgModule({
@@ -18,7 +18,7 @@ import {FormsModule} from "@angular/forms";
         DoublyLinkedListComponent,
         HeaderComponent,
         BodyComponent,
-        StackComponent
+        StackQueueComponent
     ],
     imports: [
         BrowserModule,
