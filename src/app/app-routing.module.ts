@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'binary-search', component: BinarySearchComponent },
   { path: 'linked-list', component: LinkedListComponent },
   { path: 'doubly-linked-list', component: DoublyLinkedListComponent },
-  { path: 'stack', component: StackQueueComponent },
+  { path: 'stack-queue', component: StackQueueComponent },
 ];
 
 @NgModule({

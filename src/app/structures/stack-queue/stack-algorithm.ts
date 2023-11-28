@@ -1,25 +1,15 @@
-import {StackNodeT, StackT} from "./types";
+import {LinkedStructureAlgorithm, NodeT} from "./types";
+import {LinkedNode, LinkedStructure} from "./common";
 
-class StackNode implements StackNodeT {
-    value: object | null;
-    next: StackNodeT | null = null;
-
-    constructor(value: object | null) {
-        this.value = value;
-    }
-}
-
-export class Stack implements StackT {
-    head: StackNodeT | null = null;
-    tail: StackNodeT | null = null;
-    length = 0;
+export class Stack extends LinkedStructure implements LinkedStructureAlgorithm {
 
     constructor(...values: object[]) {
-         values.forEach(obj => this.add(obj));
+        super();
+        values.forEach(obj => this.add(obj));
     }
 
-    add(value: object | null) {
-        const node = new StackNode(value);
+    add(value: object): LinkedStructureAlgorithm {
+        const node: NodeT = new LinkedNode(value);
         node.next = this.head;
 
         this.head = node;
@@ -32,35 +22,43 @@ export class Stack implements StackT {
         return this;
     }
 
-    remove() {
+    remove(): object | null {
         if (!this.head) {
             return this.head;
         }
 
         const prevHead = this.head;
-        this.head = this.head.next as StackNodeT;
+        this.head = this.head.next as NodeT | null;
         this.length--;
 
         if (!this.head) { // if removed node was the last
             this.tail = null;
         }
 
-        return prevHead;
+        return prevHead.value;
     }
 }
 
 export class StrStack {
     private stack: string[] = [];
+    constructor(str?: string) {
+        if (!str?.length) {
+            return;
+        }
+        for (const char of str) {
+            this.add(char);
+        }
+    }
 
     get length(): number {
         return this.stack.length;
     }
 
-    add(str: string) {
+    add(str: string): number {
         return this.stack.push(str);
     }
 
-    remove() {
+    remove(): string | undefined {
         return this.stack.pop();
     }
 }

@@ -49,3 +49,9 @@ input {
 .app-column {
   @extend %app-column;
 }
+
+.divider {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}

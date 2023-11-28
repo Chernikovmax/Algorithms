@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.routeTo('binary-search');
+        this.routeTo('stack-queue');
     }
 
     routeTo(path: string) {

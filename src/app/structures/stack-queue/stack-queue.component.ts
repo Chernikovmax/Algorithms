@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {closingParentheses, validParenthesesSet} from "./constants";
+import {closingParenthesesPairs, QUEUE_RESULT_TEXT, validParenthesesSet} from "./constants";
 import {StrStack} from "./stack-algorithm";
+import {StrQueue} from "./queue-algorithm";
+import {SECOND} from "../../shared/constants";
 
 @Component({
     selector: 'app-stack-queue',
@@ -8,8 +10,10 @@ import {StrStack} from "./stack-algorithm";
     styleUrls: ['./stack-queue.component.scss']
 })
 export class StackQueueComponent implements OnInit {
-    testStackStr = '';
     stackResults = '';
+
+    queueResults = '';
+    private queueInterval: NodeJS.Timeout | undefined;
 
     constructor() {
     }
@@ -17,44 +21,56 @@ export class StackQueueComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    checkString() {
-        if (!this.testStackStr.length) {
+    checkByStack(testStackStr: string) {
+        if (!testStackStr.length) {
             return;
         }
         const stack = new StrStack();
-        for (let i = 0; i < this.testStackStr.length; i++) {
-            const curSym = this.testStackStr[i];
-            if (!validParenthesesSet.has(curSym)) {
+        for (const char of testStackStr) {
+            if (!validParenthesesSet.has(char)) {
                 this.stackResults = 'false';
                 return
             }
-            const awaitingSym: string | undefined = closingParentheses[curSym];
+            const openingParenthesis: string | undefined = closingParenthesesPairs[char];
 
-            if (!stack.length && awaitingSym) {
+            if (!stack.length && openingParenthesis) { // stack is empty and opening parenthesis missed
                 this.stackResults = 'false';
                 return
             }
 
-            if (!awaitingSym) {
-                stack.add(curSym);
+            if (!openingParenthesis) {
+                stack.add(char);
             } else {
-                const sliced = stack.remove();
-                if (sliced !== awaitingSym) {
+                const stackHead = stack.remove();
+                if (stackHead !== openingParenthesis) {
                     this.stackResults = 'false';
                     return
                 }
             }
         }
         this.stackResults = `${!stack.length}`;
-        return;
     }
 
-    clearTest() {
-        this.testStackStr = '';
+    clearStackCheckingResult() {
         this.stackResults = '';
     }
 
-    clearPrevResult() {
-        this.stackResults = '';
+    processByQueue(testStr: string) {
+        if (!testStr?.length) {
+            return;
+        }
+        const queue = new StrQueue(testStr);
+        this.queueResults = QUEUE_RESULT_TEXT + queue.dequeue();
+        this.queueInterval = setInterval(() => {
+            this.queueResults = QUEUE_RESULT_TEXT + queue.dequeue();
+            if (!queue.length) {
+                clearInterval(this.queueInterval);
+            }
+        }, SECOND)
+    }
+
+    clearQueueCheckingResult() {
+        this.queueResults = '';
+        clearInterval(this.queueInterval);
     }
 }

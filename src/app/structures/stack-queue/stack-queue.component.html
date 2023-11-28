@@ -1,26 +1,57 @@
-<div class="app-row stack-controls">
+<h3 class="block-label">Stack</h3>
+<div class="app-row input-wrapper">
     <input
-            class="stack-controls__input"
-            type="text"
-            placeholder="Enter only '(', ')', '{', '}', '[' and ']' to determine if the input string is valid"
-            [(ngModel)]="testStackStr"
-            (ngModelChange)="clearPrevResult()"
-            (keydown.enter)="checkString()"
+        #stackInput
+        class="input-wrapper__input"
+        type="text"
+        placeholder="Enter only '(', ')', '{', '}', '[' and ']' to determine if the input string is valid"
+        (input)="clearStackCheckingResult()"
+        (keydown.enter)="checkByStack(stackInput.value)"
     />
     <button
-            class="stack-controls__btn"
-            [disabled]="!testStackStr?.length"
-            (click)="checkString()"
+            class="input-wrapper__btn"
+            [disabled]="!stackInput.value"
+            (click)="checkByStack(stackInput.value)"
     >
         Check
     </button>
     <button
-            class="stack-controls__btn"
-            [disabled]="!testStackStr || !stackResults"
-            (click)="clearTest()"
+            class="input-wrapper__btn"
+            [disabled]="!stackInput.value || !stackResults"
+            (click)="stackInput.value = ''; clearStackCheckingResult()"
     >
-        Clear search
+        Clear check
     </button>
 </div>
 
 <p class="binary-search_output">{{stackResults}}</p>
+
+<hr class="divider">
+
+<h3 class="block-label">Queue</h3>
+<div class="app-row input-wrapper">
+    <input
+        #queueInput
+        class="input-wrapper__input"
+        type="text"
+        placeholder="Enter any string to see how queue dequeues every second"
+        (input)="clearQueueCheckingResult()"
+        (keydown.enter)="processByQueue(queueInput.value)"
+    />
+    <button
+            class="input-wrapper__btn"
+            [disabled]="!queueInput.value"
+            (click)="processByQueue(queueInput.value)"
+    >
+        Process
+    </button>
+    <button
+            class="input-wrapper__btn"
+            [disabled]="!queueInput.value || !queueResults"
+            (click)="queueInput.value = ''; clearQueueCheckingResult()"
+    >
+        Clear check
+    </button>
+</div>
+
+<p class="binary-search_output">{{queueResults}}</p>

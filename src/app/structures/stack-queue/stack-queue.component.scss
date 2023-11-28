@@ -4,21 +4,21 @@
   @extend %app-column;
 }
 
-.stack-list {
-  white-space: pre;
+.block-label {
   margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
-.stack-controls {
+.input-wrapper {
   margin-right: 1rem;
   margin-bottom: 1rem;
 
-  .stack-controls__btn {
+  .input-wrapper__btn {
     @extend %btn-styles;
     margin-left: 1rem;
   }
 
-  .stack-controls__input {
+  .input-wrapper__input {
     width: 500px;
   }
 }
